@@ -7,6 +7,13 @@ public class Gaulois {
 	private int force;
 	private int effetPotion = 1;
 	
+	public void boirePotion(int force) {
+		effetPotion = force;
+		parler("Merci Druide, je sens que ma force est " + force + " fois décuplée");
+		
+		
+	}
+	
 	public Gaulois(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
@@ -28,7 +35,7 @@ public class Gaulois {
 	public void frapper(Romain romain) {
 		System.out.println(nom + " envoie un grand coup dans la mÃ¢choire de "
 				+ romain.getNom());
-		romain.recevoirCoup(force/3);
+		romain.recevoirCoup((force/3) * effetPotion);
 		
 	}
 	
@@ -44,6 +51,7 @@ public class Gaulois {
 		System.out.println(asterix.getNom());
 		System.out.println(asterix);
 		asterix.parler("Hey, je suis Asterix.");
+		asterix.boirePotion(5);
 		
 		Romain Jules = new Romain("Jules",6);
 		asterix.frapper(Jules);

@@ -15,6 +15,16 @@ public class Druide {
 				+ "et ma potion peut aller d'une force " + effetPotionMin +" Ã  "
 				+ effetPotionMax + ".");
 	}
+	
+	public void booste(Gaulois gaulois) {
+		if (gaulois.getNom() == "Obélix"){
+			parler("Non, Obélix!...  Tu n’auras pas de potion magique!");
+		} else {
+			
+			preparerPotion();
+			gaulois.boirePotion(forcePotion);
+		}
+	}
 
 	public String getNom() {
 		return nom;
