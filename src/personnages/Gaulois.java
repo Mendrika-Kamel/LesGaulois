@@ -1,4 +1,5 @@
 package personnages;
+import java.security.PublicKey;
 import java.util.Iterator;
 
 public class Gaulois {
@@ -37,9 +38,16 @@ public class Gaulois {
 	}
 	
 	
+	
 	public static void main(String[] args) {
+		Gaulois asterix = new Gaulois("Astérix", 8);
+		System.out.println(asterix.getNom());
+		System.out.println(asterix);
+		asterix.parler("Hey, je suis Asterix.");
 		
-		// TODO créer un main permettant de tester la classe Gaulois
+		Romain Jules = new Romain("Jules",6);
+		asterix.frapper(Jules);
+		
 
 	}
 	

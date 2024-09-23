@@ -38,6 +38,10 @@ public class Romain {
 		
 	}
 	
-	
+	public static void main(String[] args) {
+		Romain claudius = new Romain("Claudius",6);
+		claudius.parler("Hey, je suis claudius, un romain.");
+		claudius.recevoirCoup(2);
+	}
 
 }
