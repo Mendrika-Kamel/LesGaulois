@@ -18,12 +18,21 @@ public class Village {
 	}
 	
 	public void ajouterHabitant(Gaulois gaulois) {
+		if (nbVillageois < Villageois.length) {
 		Villageois[nbVillageois] = gaulois;
-		nbVillageois++;
+		nbVillageois++; }
+		else {
+			System.out.println("On ne peut plus ajouter de villageois");
+		}
 	}
 	
-	public void trouverHabitant(int num_villageois) {
-		System.out.println(Villageois[nbVillageois-1].getNom());
+	public Gaulois trouverHabitant(int num_villageois) {
+		if (num_villageois >= 0 && num_villageois < Villageois.length) {
+			return Villageois[num_villageois];
+		} else {
+			System.out.println("Numéro d'indice invalide");
+			return null;
+		}
 	}
 
 
@@ -40,35 +49,58 @@ public class Village {
 		return nom;
 	}
 	
-	public void afficherVillageois (Chef chef) {
-		System.out.println("Dans le village du chef " + chef.getNom() + " vivent les "
-				+ "l�gendaires gaulois :");
+	public void afficherVillageois () {
 		
+		if (chef != null) {
+		System.out.println("Dans le village du chef " + chef.getNom() + " vivent les "
+				+ "l�gendaires gaulois :");}
+		else {
+			System.out.println("Le chef n'a pas encore été nommé.");
+			
+		}
+		
+		if (nbVillageois>0) {
 		for (int i=0; i<nbVillageois; i++) {
 			
-			System.out.println("-" + Villageois[i].getNom());
+			System.out.println("- " + Villageois[i].getNom());
+			}
+		} else {
+			System.out.println("Il n'y a pas de villageois dans le village.");
 		}
 		
 	}
 
 
+
 	public static void main(String[] args) {
-		Village village = new Village("Village des Irr�ductibles",30);
+		Village village = new Village("Village des Irréductibles",30);
 		// Gaulois gaulois = village.trouverHabitant(30); 
-		// On obtient une exception car il n'y a pas de gaulois dans la 30�me case
+		
+		// On obtient une exception car le nb de gaulois maximum est de 30, on fait un out of range
+		// Il n'y a pas d'élément à l'indice 30, c'est de 0 à 29 d'où l'exception ArrayIndexOutOfBoundsException
 		
 		Chef chef = new Chef("Abraracourcix", 6, village);
+		village.setChef(chef);
 		
-
-		// Gaulois gaulois = village.trouverHabitant(1); 
-		// System.out.println(gaulois); 
-		// Type mismatch: cannot convert from void to Gaulois
-		// On a pas de Gaulois dans la premi�re case du tableau
-
-		Gaulois obelix = new Gaulois("Ob�lix", 25);
-		
+		Gaulois asterix = new Gaulois("Asterix", 8);
+		village.ajouterHabitant(asterix);
+		Gaulois obelix = new Gaulois("Obélix", 25);
 		village.ajouterHabitant(obelix);
-		 village.afficherVillageois(chef);
+	
+		village.afficherVillageois();
+		
+		
+
+
+		
+		//Gaulois gaulois = village.trouverHabitant(1); 
+		//System.out.println(gaulois);
+		// Cela renvoie null car le seul gaulois qu'on a ajouté est à l'indice 0 
+		//et après cet indice il n'y a pas de gaulois donc c'est null qui est retourné
+	
+
+
+		
 	}	
 	
 	
