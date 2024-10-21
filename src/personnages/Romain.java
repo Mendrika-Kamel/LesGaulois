@@ -7,6 +7,8 @@ public class Romain {
 	private Equipement[] equipements = new Equipement[2];
 	private int nbEquipement = 0;
 	private String texte; 
+    private boolean vainqueur;
+
 
 	
 	
@@ -35,6 +37,10 @@ public class Romain {
 		System.out.println(prendreParole() + "Â« " + texte + "Â»");
 		
 	}
+	
+	  public boolean isVainqueur() {
+	        return vainqueur;
+	    }
 
 
 	private String prendreParole() {
@@ -63,7 +69,7 @@ public class Romain {
 				+ "coup est de " + forceCoup; 
 		int resistanceEquipement = 0; 
 		if (nbEquipement != 0) { 
-			texte += "\nMais heureusement, grace à mon équipement sa force est diminué de "; 
+			texte += "\nMais heureusement, grace ï¿½ mon ï¿½quipement sa force est diminuï¿½ de "; 
 			for (int i = 0; i < nbEquipement;i++) { 
 				if ((equipements[i] != null && 
 						equipements[i].equals(Equipement.BOUCLIER))) {
@@ -81,7 +87,7 @@ public class Romain {
 
 	private Equipement[] ejecterEquipement() { 
 		Equipement[] equipementEjecte = new Equipement[nbEquipement]; 
-		System.out.println("L'équipement de " + nom.toString() + " s'envole sous la force du coup."); 
+		System.out.println("L'ï¿½quipement de " + nom.toString() + " s'envole sous la force du coup."); 
 		//TODO 
 		int nbEquipementEjecte = 0; 
 		for (int i = 0; i < nbEquipement; i++) {
@@ -96,19 +102,24 @@ public class Romain {
 	
 	public Equipement[] recevoirCoup(int forceCoup) { 
 	Equipement[] equipementEjecte = null; 
-	// précondition 
+	// precondition 
 	assert force > 0; 
+	
 	int oldForce = force; 
 	forceCoup = calculResistanceEquipement(forceCoup); 
 	force -= forceCoup; 
 
 	
-	if (force==0) { 
-		parler("Aïe");} else {
+	if (force<=0) { 
+		parler("Aï¿½e");
 		equipementEjecte = ejecterEquipement(); 
 		parler("J'abandonne..."); 
+		vainqueur = false;
+		} else {
+			parler("J'ai encore de la force");
+			vainqueur = true; // le romain n'a pas encore perdu
 		}
-	// post condition la force a diminuée 
+	// post condition la force a diminuï¿½e 
 	assert force < oldForce; 
 	return equipementEjecte;
 
